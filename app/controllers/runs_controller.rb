@@ -9,7 +9,7 @@ class RunsController < ApplicationController
     @run = current_user.runs.build(run_params)
     @run.user_id = current_user.id
     if @run.save
-      redirect_to run_post_path(current_user, @run)
+      redirect_to user_runs_path(current_user, @run)
     end
   end
 
@@ -19,11 +19,12 @@ class RunsController < ApplicationController
 
   def index
     @user = User.find_by_id(params[:user_id])
+    @runs = Run.where("user_id = ?", @user.id)
   end
 
   private
     def run_params
-      params.require(:run).permit(:time_in_minutes, :run_date, :content)
+      params.require(:run).permit(:time_in_minutes, :location, :run_date, :content)
     end
 
 end

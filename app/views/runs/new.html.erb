@@ -1,0 +1,39 @@
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h1>Add Run</h1>
+            <p class="lead">Enter the details of your run below.</p>
+            <%= form_for [current_user, @run], html: { multipart: true } do |f| %>
+              <% if @run.errors.any? %>
+                <div id="error_explanation">
+                  <h2>There are <%= pluralize(@run.errors.count, "error") %>:</h2>
+
+                  <ul>
+                  <% @run.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <div class="field" style = "inline-block">
+                <p><%= f.label :"Time (in minutes): " %>
+                <%= f.text_field :time_in_minutes, style: "width: 30px;" %></p>
+              </div><br/>
+              <div class="field" style = "inline-block">
+                <p><%= f.label :"Location (optional): " %>
+                <%= f.text_field :location %></p>
+              </div><br/>
+              <div class="field" style = "inline-block">
+                <p><%= f.label :"Date of Run: " %>
+                <%= f.date_field :run_date %></p>
+              </div><br/>
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+            <% end %>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>

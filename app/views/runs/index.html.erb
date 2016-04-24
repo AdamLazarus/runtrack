@@ -1,0 +1,24 @@
+<div class="container">
+      <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2>Your Runs</h2>
+            <table style="width: 50%;" align="center">
+              <col width="45%">
+              <col width="45%">
+              <col width="10%">
+              <tr>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Time (in minutes)</th>
+              </tr>
+            <% @runs.each do |run| %>
+              <tr>
+                <td align="left"><%= run.run_date%></td>
+                <td align="left"><%= run.location%></td>
+                <td align="left"><%= run.time_in_minutes%></td>
+              </tr>
+            <% end %>
+          </table>
+  </div>
+</div>
+    </div>
