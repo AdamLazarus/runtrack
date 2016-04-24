@@ -2,6 +2,7 @@
       <div class="row">
           <div class="col-lg-12 text-center">
             <h2>Your Runs</h2>
+            <%= link_to "Add Run", new_user_run_path, class: "btn btn-primary" %>
             <table style="width: 50%;" align="center">
               <col width="45%">
               <col width="45%">
@@ -19,6 +20,22 @@
               </tr>
             <% end %>
           </table>
-  </div>
-</div>
+        </div>
     </div>
+    <div class="row">
+      <div class="col-lg-12 text-center"><br/>
+        <% @week_total = 0 %>
+        <% @month_total = 0 %>
+        <% @runs.each do |run| %>
+          <% if run.run_date > (Date.today - 7) %>
+            <% @week_total += run.time_in_minutes %>
+            <% @month_total += run.time_in_minutes %>
+          <%elsif run.run_date > (Date.today - 30) %>
+            <% @month_total += run.time_in_minutes %>
+          <% end %>
+        <% end %>
+        <p>Time Running This Week: <%= @week_total %> minutes</p>
+        <p>Time Running This Month: <%= @month_total %> minutes</p>
+      </div>
+    </div>
+</div>
